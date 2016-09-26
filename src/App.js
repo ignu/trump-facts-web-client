@@ -28,8 +28,6 @@ class App extends Component {
   renderList(data) {
     const first = R.init(data);
     const last = R.last(data);
-    console.log('first', first);
-    console.log('last', last);
     let toHtml = (showComma) => {
       return (f) => <HtmlFact showComma={showComma} url={f.urls[0]} title={f.title}/>;
     }
