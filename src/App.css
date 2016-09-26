@@ -3,6 +3,7 @@
 }
 
 .App-header {
+  text-align: center;
   background-color: #222;
   height: 50px;
   padding: 10px;
@@ -13,6 +14,10 @@
   font-size: large;
   padding: 50px;
   font-size: 1.4em;
+}
+
+li {
+  padding: 3px;
 }
 
 a, a:visited {

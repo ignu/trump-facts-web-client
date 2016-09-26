@@ -48,19 +48,24 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h1>Trump Facts</h1>
+          <h1>Trump is a...</h1>
         </div>
         <p className="App-intro">
-          <h3>Donald Trump is literally insanse</h3>
           <div>
-            <span>Donald Trump is an idiot who believes </span>
+            <h3>Donald Trump is a fascist who</h3>
+            <ul>{ this.renderList(facts.data.fascist)}</ul>
+          </div>
+
+          <h3>Donald Trump is an idiot who believes</h3>
+
+          <div>
             <ul>{ this.renderList(facts.data.crazy)}</ul>
           </div>
 
+          <h3>Donald Trump is a liar who...</h3>
+
           <div>
-            <h3>Donald Trump is a literal fascist</h3>
-            <span>Donald Trump is a madman who </span>
-            <ul>{ this.renderList(facts.data.fascist)}</ul>
+            <ul>{ this.renderList(facts.data.crazy)}</ul>
           </div>
         <div>
       </div>
