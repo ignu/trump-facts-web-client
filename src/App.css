@@ -5,8 +5,12 @@
 .App-header {
   text-align: center;
   background-color: #222;
-  height: 50px;
+  height: 60px;
   padding: 10px;
+  color: white;
+}
+
+h1 a, h1 a:visited {
   color: white;
 }
 
@@ -14,6 +18,11 @@
   font-size: large;
   padding: 50px;
   font-size: 1.4em;
+}
+
+sup, .citation {
+  color: #888;
+  opacity: 0.5;
 }
 
 li {
