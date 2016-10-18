@@ -6,6 +6,7 @@ import R from 'ramda';
 let citationCount = 0;
 let citations = [];
 
+let Tags = {}
 class HtmlFact extends Component {
   render() {
     let printCitations = (url) => {
@@ -29,20 +30,33 @@ class HtmlFact extends Component {
 class BoardFact extends Component {
   render() {
     return(
-        <span>
-          [url={this.props.url}]{this.props.title}[/url]
-          { this.props.showComma && <span className="comma">, </span> }
-        </span>
+        <div>
+          * [url={this.props.url}]{this.props.title}[/url]
+        </div>
     );
   }
 }
 
+        Tags = {
+          HtmlFact,
+          BoardFact,
+        }
+
 class App extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      format: "Html"
+    }
+  }
+
   renderList(data) {
     const first = R.init(data);
     const last = R.last(data);
+    const Fact = Tags[this.state.format + "Fact"]
     let toHtml = (showComma) => {
-      return (f) => <HtmlFact showComma={showComma} urls={f.urls} url={f.urls[0]} title={f.title}/>;
+      return (f) => <Fact showComma={showComma} urls={f.urls} url={f.urls[0]} title={f.title}/>;
     }
     let html = R.map(toHtml(true))(first);
     html.push(toHtml(false)(last));
@@ -55,6 +69,12 @@ class App extends Component {
     //return R.map((f) => <BoardFact url={f.urls[0]} title={f.title}/>)(data);
   }
 
+  changeType(type) {
+    return () => {
+      this.setState({ format: type})
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -62,6 +82,11 @@ class App extends Component {
         <h1>Donald Trump is a <a href="#fascist">fascist</a> <a href="#idiot">idiot</a> <a href="#sexist">sexist</a> <a href="#liar">liar</a></h1>
         </div>
         <p className="App-intro">
+
+          <button onClick={this.changeType("Text").bind(this)}>text</button>
+          <button onClick={this.changeType("Html").bind(this)}>html</button>
+          <button onClick={this.changeType("Markdown").bind(this)}>markdown</button>
+          <button onClick={this.changeType("Board").bind(this)}>BBBoard</button>
         
           <div>
             <a name="fascist"></a>
@@ -82,7 +107,7 @@ class App extends Component {
           </div>
 
         <div>
-          <a name="liar"></a>
+          <a name="sexist"></a>
           <h3>Donald Trump is a sexist who...</h3>
           <ul>{ this.renderList(facts.data.sexist)}</ul>
         </div>
